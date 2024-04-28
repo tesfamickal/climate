@@ -1,0 +1,21 @@
+type ActivityData = {
+  activity: number;
+  activity_units: string;
+  capacity: number;
+  capacity_factor: number;
+  capacity_units: string;
+  emissions_factor: number;
+  emissions_factor_units: string;
+  emissions_quantity: number;
+  end_time: string;
+  gas: string;
+  iso3_country: string;
+  lat: number;
+  lon: number;
+  original_inventory_sector: string;
+  source_id: number;
+  source_name: string;
+  source_type: string;
+  start_time: string;
+  temporal_granularity: string;
+};
