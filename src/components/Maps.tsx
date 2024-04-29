@@ -1,17 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
-import MapboxglSpiderifier, { popupOffsetForSpiderLeg } from 'mapboxgl-spiderifier'
+import MapboxglSpiderifier from 'mapboxgl-spiderifier'
 import mapboxgl from 'mapbox-gl'
 import TestData from "../data/bay_area_counties.json"
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-// import { cn } from '../lib/utils';
 import _ from 'lodash';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import "../index.css"
 mapboxgl.accessToken = 'pk.eyJ1IjoidGVzZmE3NzciLCJhIjoiY2xxYzBscHNjMDBiejJqcGdzdDN6amZyOSJ9.tqr_zoJSHvi3GCnp0oJhpA';
-import { MapPin } from 'lucide-react';
-import { createRoot } from 'react-dom/client';
 import Popup from './popup';
-import ReactDOM from 'react-dom';
 
 function Maps() {
   mapboxgl.Map
@@ -21,7 +16,6 @@ function Maps() {
   const [lat, setLat] = useState(37.8272);
   const [zoom, setZoom] = useState(7.5);
   const [data, setData] = useState<ActivityData | null>(null)
-  const popUpRef = useRef(new mapboxgl.Popup({ offset: 15 }))
   const [showPopup, setShowPopup] = useState<boolean>(true);
 
 
@@ -57,58 +51,8 @@ function Maps() {
         console.log('Clicked on ', spiderLeg);
         setData(spiderLeg.feature.properties)
         setShowPopup(true)
-
-
-        // const popupNode = document.createElement("div")
-        // const popupRoot = createRoot(popupNode)
-        //
-        // popupRoot.render(
-        //   <Popup
-        //     data={spiderLeg.feature.properties}
-        //   />,
-        // )
-        // if (map.current) {
-        //   popUpRef.current
-        //     .setLngLat({ lng: spiderLeg.feature.properties.lon, lat: spiderLeg.feature.properties.lat })
-        //     .setDOMContent(popupNode)
-        //     .addTo(map.current)
-        // }
-        // console.log("spider", spiderLeg.feature.properties.lngLat.wrap())
       },
-      // initializeLeg: initializeSpiderLeg,
     });
-    // function initializeSpiderLeg(spiderLeg: any) {
-    //
-    //   popUpRef.current = new mapboxgl.Popup({
-    //     closeButton: true,
-    //     closeOnClick: false,
-    //     offset: popupOffsetForSpiderLeg(spiderLeg)
-    //   });
-    //
-    //   const popupNode = document.querySelector(".spider-leg-pin")
-    //   if (popupNode) {
-    //     const popupRoot = createRoot(popupNode)
-    //     console.log("popup", popupNode)
-    //
-    //     popupRoot.render(
-    //       <Popup
-    //         data={spiderLeg.feature.properties}
-    //       />,
-    //     )
-    //     if (map.current) {
-    //       popUpRef.current
-    //         .setLngLat({ lng: spiderLeg.feature.properties.lon, lat: spiderLeg.feature.properties.lat })
-    //         .setDOMContent(popupNode)
-    //         .addTo(map.current)
-    //     }
-    //   }
-    //   spiderLeg.mapboxMarker.setPopup(popUpRef.current);
-    //   if (popUpRef.current) {
-    //     popUpRef.current.remove();
-    //   }
-    // }
-
-
 
     map.current.on('load', () => {
       map.current?.addSource("bay", {
@@ -126,23 +70,23 @@ function Maps() {
             'match',
             ['get', 'id'],
             's7hs4j.1',
-            'green',
+            '#464D77',
             's7hs4j.2',
-            'orange',
+            '#188FA7',
             's7hs4j.3',
-            'brown',
+            '#F2BAC9',
             's7hs4j.4',
-            'purple',
+            '#CFD186',
             's7hs4j.5',
-            'red',
+            '#60712F',
             's7hs4j.6',
-            'violet',
+            '#E1BC29',
             's7hs4j.7',
-            'aqua',
+            '#778DA9',
             's7hs4j.8',
-            'pink',
+            '#C16E70',
             's7hs4j.9',
-            'yellow',
+            '#AA1155',
             'steelblue'
           ],
           'fill-opacity': [
