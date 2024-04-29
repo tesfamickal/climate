@@ -1,22 +1,22 @@
-import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import mapboxgl from 'mapbox-gl'
-import TestData from "./data/bay_area_counties.json"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './components/ui/card';
-import { Check } from 'lucide-react';
-import { cn } from './lib/utils';
 import Maps from './components/Maps';
-import Navbar from './components/navbar';
+import Home from './components/home';
+import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from "react-router-dom"
 
 mapboxgl.accessToken = 'pk.eyJ1IjoidGVzZmE3NzciLCJhIjoiY2xxYzBscHNjMDBiejJqcGdzdDN6amZyOSJ9.tqr_zoJSHvi3GCnp0oJhpA';
 
-function App() {
-
-  return (
-    <>
-      <Maps />
-    </>
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route>
+      <Route index element={<Home />} />
+      <Route path='/map' element={<Maps />} />
+    </Route>
   )
+)
+
+function App() {
+  return <RouterProvider router={router} />;
 }
 
 export default App
