@@ -4,7 +4,8 @@ import Maps from './components/Maps';
 import Home from './components/home';
 import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from "react-router-dom"
 
-mapboxgl.accessToken = 'pk.eyJ1IjoidGVzZmE3NzciLCJhIjoiY2xxYzBscHNjMDBiejJqcGdzdDN6amZyOSJ9.tqr_zoJSHvi3GCnp0oJhpA';
+mapboxgl.accessToken = import.meta.env.VITE_MAPBOX;
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
 )
 
 function App() {
+  console.log(import.meta.env.VITE_MAPBOX as string)
   return <RouterProvider router={router} />;
 }
 

@@ -5,7 +5,6 @@ import TestData from "../data/bay_area_counties.json"
 import _ from 'lodash';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import "../index.css"
-mapboxgl.accessToken = 'pk.eyJ1IjoidGVzZmE3NzciLCJhIjoiY2xxYzBscHNjMDBiejJqcGdzdDN6amZyOSJ9.tqr_zoJSHvi3GCnp0oJhpA';
 import Popup from './popup';
 
 function Maps() {
