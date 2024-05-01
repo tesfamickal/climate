@@ -1,4 +1,4 @@
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
+import { Card, CardContent,CardHeader, CardTitle } from './ui/card';
 import { MapPin } from 'lucide-react';
 
 interface PopupProps {
@@ -25,7 +25,7 @@ const Popup: React.FC<PopupProps> = ({ data, onClose }) => {
             <CardTitle className='bold text-md'>{data?.source_name}</CardTitle>
             <div className='flex'>
               <MapPin size={16} strokeWidth={0.5} />
-              <span className='text-sm'> {data?.lat} {data?.lon}</span>
+              <span className='text-sm'> {data?.lat}, {data?.lon}</span>
             </div>
             <div className='inline-flex'>
               <p className='text-sm bg-orange-300 px-2 py-1 rounded-xl'>{data?.original_inventory_sector}</p>

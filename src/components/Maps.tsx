@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import MapboxglSpiderifier from 'mapboxgl-spiderifier'
 import mapboxgl from 'mapbox-gl'
-import TestData from "../data/bay_area_counties.json"
+import BayAreaJson from "../data/bay_area_counties.json"
 import _ from 'lodash';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import "../index.css"
@@ -11,12 +11,11 @@ function Maps() {
   mapboxgl.Map
   const mapContainer = useRef<any>(null);
   const map = useRef<null | mapboxgl.Map>(null);
-  const [lng, setLng] = useState(-121.2913);
-  const [lat, setLat] = useState(37.8272);
-  const [zoom, setZoom] = useState(7.5);
+  const lng = -121.2913;
+  const lat = 37.8272;
+  const zoom  = 7.5;
   const [data, setData] = useState<ActivityData | null>(null)
   const [showPopup, setShowPopup] = useState<boolean>(true);
-  console.log(TestData)
 
 
   // Dynamically import county data based on the county name
@@ -56,7 +55,7 @@ function Maps() {
     map.current.on('load', () => {
       map.current?.addSource("bay", {
         type: 'geojson',
-        data: TestData as any,
+        data: BayAreaJson as any,
         promoteId: 'id'
       })
 
