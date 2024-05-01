@@ -17,7 +17,6 @@ const router = createBrowserRouter(
 )
 
 function App() {
-  console.log(import.meta.env.VITE_MAPBOX as string)
   return <RouterProvider router={router} />;
 }
 

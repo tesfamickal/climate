@@ -16,6 +16,7 @@ function Maps() {
   const [zoom, setZoom] = useState(7.5);
   const [data, setData] = useState<ActivityData | null>(null)
   const [showPopup, setShowPopup] = useState<boolean>(true);
+  console.log(TestData)
 
 
   // Dynamically import county data based on the county name
@@ -47,7 +48,6 @@ function Maps() {
       animationSpeed: 200,
       onClick: function(e: any, spiderLeg: any) {
         e.perventDefault
-        console.log('Clicked on ', spiderLeg);
         setData(spiderLeg.feature.properties)
         setShowPopup(true)
       },
@@ -56,7 +56,7 @@ function Maps() {
     map.current.on('load', () => {
       map.current?.addSource("bay", {
         type: 'geojson',
-        data: TestData,
+        data: TestData as any,
         promoteId: 'id'
       })
 
@@ -96,8 +96,6 @@ function Maps() {
           ]
         }
       })
-
-      console.log(map.current)
 
       map.current?.on('click', async (e: any) => {
         const features: any = map.current?.queryRenderedFeatures(e.point, {
@@ -149,37 +147,11 @@ function Maps() {
             const features: any = map.current?.queryRenderedFeatures(e.point, {
               layers: [layerId]
             })
-            console.log("hello", features)
             if (!features.length) {
               spiderifier.unspiderfy()
             } else {
               features.map((f: any, index: any) => f.id = index)
-              console.log("f", features)
               spiderifier.spiderfy(features[0].geometry.coordinates, features)
-
-
-              // popUpRef.current = new mapboxgl.Popup({
-              //   closeButton: true,
-              //   closeOnClick: false,
-              // });
-              //
-              // const popupNode = document.querySelector(".spider-leg-pin")
-              // if (popupNode) {
-              //   const popupRoot = createRoot(popupNode)
-              //   console.log("popup", popupNode)
-              //
-              //   popupRoot.render(
-              //     <Popup
-              //       data={features.properties}
-              //     />,
-              //   )
-              //   if (map.current) {
-              //     popUpRef.current
-              //       .setLngLat({ lng: features.properties.lon, lat: features.feature.properties.lat })
-              //       .setDOMContent(popupNode)
-              //       .addTo(map.current)
-              //   }
-              // }
             }
           })
 
@@ -226,7 +198,6 @@ function Maps() {
     })
   }, [countyData]);
 
-  console.log("activity", data)
   return (
     <>
       <div className='absolute w-screen h-screen justify-center items-center'>
